@@ -1,0 +1,252 @@
+---
+title: "Riemannian Motion Generation"
+description: "A Unified Framework for Motion Representation and Generation via Riemannian Flow Matching"
+keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representation, Riemannian Geometry, Generative Models"
+---
+
+```{=html}
+<!-- ══════════════════════════════════════════════════════════════════════════
+     HERO: Title, Authors, Affiliations, Links
+     ══════════════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <!-- Paper Title — auto-injected from front matter title: -->
+          <h1 class="title is-1 publication-title">
+            {{< paper-title >}}
+          </h1>
+
+          <!-- Authors — add/remove <span class="author-block"> as needed -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Fangran MIAO<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Jian HUANG<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Ting LI<sup>2</sup>
+            </span>
+          </div>
+
+          <!-- Affiliations — match superscripts above -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>PolyU,</span>
+            <span class="author-block"><sup>2</sup>SUSTech</span>
+          </div>
+
+          <!-- Publication Links — add/remove buttons as needed -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- arXiv -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><img src="./icon/arxiv.png" style="width:1em;height:1em;object-fit:contain;" alt="arXiv"></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Code -->
+              <span class="link-block">
+                <a href="https://github.com/frank-miao/RMG"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><img src="./icon/github.png" style="width:1em;height:1em;object-fit:contain;" alt="GitHub"></span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <!-- Hugging Face -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/Frank-miao/RMG"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><img src="./icon/Hugging Face.png" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
+                  <span>Demo</span>
+                </a>
+              </span>
+
+              <!-- Hugging Face Model Weights -->
+              <span class="link-block">
+                <a href="https://huggingface.co/Frank-miao/RMG"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><img src="./icon/Hugging Face.png" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
+                  <span>Model Weights</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+          <!-- /Publication Links -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+::: {.desktop-section container="is-fluid"}
+::: {layout-ncol=2 style="padding: 0 4rem;"}
+![**Left:** Illustration of the unified Riemannian representation for articulated motion. Each motion frame can be factorized into [**global translation** $(\mathcal{M}_{\mathscr{T}})$]{style="color: rgb(205,144,114)"}, [**global orientation and per-joint rotations** $(\mathcal{M}_{\mathscr{R}})$]{style="color: rgb(205,144,114)"}, and [**local pose** $(\mathcal{M}_{\mathscr{P}})$]{style="color: rgb(205,144,114)"} along with the [**temporal differences** $(T\mathcal{M}_{\mathscr{F}}\ \text{for}\ \mathscr{F}\in\{\mathscr{T},\mathscr{R},\mathscr{P}\})$]{style="color: rgb(101,165,66)"}.](./static/images/RMG-illustration-1.png)
+
+![**Right:** Illustration of the Riemannian flow matching process in the RMG manifold. $\mathcal{M}$ is defined by our proposed manifold $\mathcal{M}_{\mathrm{RMG}}=\mathbb{R}^3\times (\mathbb{S}^3)^J$. The red line is the geodesic between $\mathbf{x}_0$ and $\mathbf{x}_1$ while the yellow line with arrow is the velocity at $\mathbf{x}_t$.](./static/images/RMG-illustration-2.png)
+:::
+:::
+
+::: {.desktop-section}
+
+## Abstract
+
+::: {.has-text-justified style="text-align: justify; font-size: 1.15rem;"}
+
+Human motion generation is often learned in Euclidean spaces, although valid motions follow structured non-Euclidean geometry. We present \textbf{Riemannian Motion Generation (RMG)}, a unified framework that represents motion on a product manifold and learns dynamics via Riemannian flow matching. RMG factorizes motion into several manifold factors, yielding a scale-free representation with intrinsic normalization, and uses geodesic interpolation, tangent-space supervision, and manifold-preserving ODE integration for training and sampling. On HumanML3D, RMG achieves state-of-the-art FID in the HumanML3D format (0.043) and ranks first on all reported metrics under the MotionStreamer format. On MotionMillion, it also surpasses strong baselines (FID 8.1, R@1 0.86). Ablations show that the compact $\mathscr{T}+\mathscr{R}$ (translation + rotations) representation is the most stable and effective, highlighting geometry-aware modeling as a practical and scalable route to high-fidelity motion generation. In addition, our code has been made publicly available.
+
+:::
+
+::: {style="margin-top: 2.5rem;"}
+
+## Motion Representation Comparison
+
+| Format | $\mathscr{T}$ | $\mathscr{R}_{\mathrm{Orientation}}$ | $\mathscr{R}_{\mathrm{Joint}}$ | $\mathscr{P}$ | $\mathrm{d}\mathscr{T}$ | $\mathrm{d}\mathscr{R}_{\mathrm{Orientation}}$ | $\mathrm{d}\mathscr{R}_{\mathrm{Joint}}$ | $\mathrm{d}\mathscr{P}$ | Foot Contact | Dim. |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| HumanML3D | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | $12J-1$ |
+| MotionStreamer | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | $12J+8$ |
+| DART | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | $12J+12$ |
+| HY-Motion | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | $9J+3$ |
+| **RMG (Ours)** | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | $4J+3$ |
+
+: Comparison of motion representations. $\mathscr{T}$: global translation; $\mathscr{R}_{\mathrm{Orientation}}$: global orientation; $\mathscr{R}_{\mathrm{Joint}}$: per-joint rotation; $\mathscr{P}$: joint position; $\mathrm{d}\cdot$: temporal difference. {#tbl-comparison}
+
+:::
+:::
+
+
+```{=html}
+<!-- ══════════════════════════════════════════════════════════════════════════
+     RESULTS GRID: Showcase videos (replaces the original Carousel)
+     Add/remove <div class="column is-half"> blocks as needed.
+     ══════════════════════════════════════════════════════════════════════════ -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered" style="margin-bottom: 1.5rem;">Showcase Videos</h2>
+      <div class="columns is-multiline results-grid">
+
+        <div class="column is-half">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_4.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_5.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_6.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_7.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_8.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+
+
+::: {.desktop-section}
+
+## Results
+
+### Text-based Motion Generation on HumanML3D
+
+```{=html}
+<table id="tbl-h3d" style="width:100%;">
+  <caption>Evaluation of text-based motion generation on HumanML3D dataset.</caption>
+  <thead>
+    <tr>
+      <th rowspan="2" style="text-align:left;">Method</th>
+      <th colspan="4" style="text-align:center;">HumanML3D Format</th>
+      <th colspan="4" style="text-align:center;">MotionStreamer Format</th>
+    </tr>
+    <tr>
+      <th>FID↓</th><th>R@1↑</th><th>Div→</th><th>MModality↑</th>
+      <th>FID↓</th><th>R@1↑</th><th>Div→</th><th>MModality↑</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>GT</td><td>0.002</td><td>0.511</td><td>9.503</td><td>2.799</td><td>0.002</td><td>0.702</td><td>27.492</td><td>--</td></tr>
+    <tr><td>MLD</td><td>0.473</td><td>0.481</td><td>9.724</td><td>2.413</td><td>18.236</td><td>0.546</td><td>26.352</td><td>--</td></tr>
+    <tr><td>T2M-GPT</td><td>0.116</td><td>0.492</td><td>9.761</td><td>1.856</td><td>12.475</td><td>0.606</td><td>27.275</td><td>--</td></tr>
+    <tr><td>MotionGPT</td><td>0.232</td><td>0.492</td><td><strong>9.528</strong></td><td>2.008</td><td>14.375</td><td>0.456</td><td>27.114</td><td>--</td></tr>
+    <tr><td>MoMask</td><td><u>0.045</u></td><td>0.521</td><td>--</td><td>1.241</td><td>12.232</td><td>0.621</td><td>27.127</td><td>--</td></tr>
+    <tr><td>MotionLCM</td><td>0.304</td><td>0.505</td><td>9.607</td><td>2.259</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+    <tr><td>MotionCLR</td><td>0.269</td><td><strong>0.542</strong></td><td>9.607</td><td>1.985</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+    <tr><td>MotionLab</td><td>0.167</td><td>--</td><td>9.593</td><td><strong>2.912</strong></td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+    <tr><td>MotionStreamer</td><td>--</td><td>--</td><td>--</td><td>--</td><td><u>11.790</u></td><td><u>0.631</u></td><td><u>27.284</u></td><td>--</td></tr>
+    <tr><td><strong>Ours</strong></td><td><strong>0.043</strong></td><td><u>0.525</u></td><td><u>9.555</u></td><td><u>2.748</u></td><td><strong>5.835</strong></td><td><strong>0.710</strong></td><td><strong>27.672</strong></td><td><strong>14.906</strong></td></tr>
+  </tbody>
+</table>
+```
+
+### Text-based Motion Generation on MotionMillion
+
+| Method | FID↓ | R@1↑ |
+|:---|:---:|:---:|
+| ScaMo | 89.0 | 0.67 |
+| GoToZero-3B | 10.8 | 0.79 |
+| GoToZero-7B | <u>10.3</u> | <u>0.79</u> |
+| **Ours (0.2B+1.7B)** | **8.1** | **0.86** |
+
+: Evaluation of text-based motion generation on MotionMillion dataset. {#tbl-mm}
+
+## BibTeX {#BibTeX}
+
+```bibtex
+@article{rmg,
+  author    = {Fangran MIAO, Jian HUANG, Ting LI},
+  title     = {Riemannian Motion Generation: A Unified Framework for Motion Representation and Generation via Riemannian Flow Matching},
+  journal   = {arxiv},
+  year      = {2026},
+}
+```
+
+:::
