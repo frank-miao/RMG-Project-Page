@@ -76,7 +76,7 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
 
               <!-- Hugging Face Model Weights -->
               <span class="link-block">
-                <a href="https://huggingface.co/Frank-miao/RMG"
+                <a href="https://huggingface.co/collections/Frank-miao/rmg"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><img src="./icon/Hugging Face.png" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
                   <span>Model Weights</span>
@@ -209,6 +209,30 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
           <div class="item">
             <video autoplay controls muted loop playsinline>
               <source src="./static/videos/motion_9.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_10.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_11.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/videos/motion_12.mp4" type="video/mp4">
             </video>
           </div>
         </div>
