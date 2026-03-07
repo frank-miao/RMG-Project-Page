@@ -237,7 +237,149 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
           </div>
         </div>
 
+        <div class="column is-one-third">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="static/videos/A person climbs a ladder.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="static/videos/Person turns to left, takes three steps forward, sits down, and then walks back to starting place.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="item">
+            <video autoplay controls muted loop playsinline>
+              <source src="static/videos/The person puts something on its side and then brings it back to normal.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </div>
+</section>
+```
+
+```{=html}
+<section class="hero is-small same-prompts-section">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered" style="margin-bottom: 1.5rem;">Same Prompts, Diverse Motions</h2>
+      <h3 class="prompt-row-title">A person stands on one legs in yoga pose</h3>
+      <div class="prompt-groups-scroller">
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A person stands on one legs in yoga pose/motion_1.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A person stands on one legs in yoga pose/motion_2.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A person stands on one legs in yoga pose/motion_3.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A person stands on one legs in yoga pose/motion_4.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A person stands on one legs in yoga pose/motion_5.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+
+      <h3 class="prompt-row-title">A man performs a standing back kick</h3>
+      <div class="prompt-groups-scroller">
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A man performs a standing back kick/motion_1.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A man performs a standing back kick/motion_2.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A man performs a standing back kick/motion_3.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A man performs a standing back kick/motion_4.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/A man performs a standing back kick/motion_5.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+
     </div>
   </div>
 </section>
