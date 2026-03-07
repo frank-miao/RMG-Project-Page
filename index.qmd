@@ -27,13 +27,13 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
           <!-- Authors — add/remove <span class="author-block"> as needed -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              Fangran MIAO<sup>1</sup>,
+              Fangran Miao<sup>1</sup>,
             </span>
             <span class="author-block">
-              Jian HUANG<sup>1</sup>,
+              Jian Huang<sup>1</sup>,
             </span>
             <span class="author-block">
-              Ting LI<sup>2</sup>
+              Ting Li<sup>2</sup>
             </span>
           </div>
 
@@ -108,7 +108,7 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
 
 ::: {.has-text-justified style="text-align: justify; font-size: 1.15rem;"}
 
-Human motion generation is often learned in Euclidean spaces, although valid motions follow structured non-Euclidean geometry. We present \textbf{Riemannian Motion Generation (RMG)}, a unified framework that represents motion on a product manifold and learns dynamics via Riemannian flow matching. RMG factorizes motion into several manifold factors, yielding a scale-free representation with intrinsic normalization, and uses geodesic interpolation, tangent-space supervision, and manifold-preserving ODE integration for training and sampling. On HumanML3D, RMG achieves state-of-the-art FID in the HumanML3D format (0.043) and ranks first on all reported metrics under the MotionStreamer format. On MotionMillion, it also surpasses strong baselines (FID 8.1, R@1 0.86). Ablations show that the compact $\mathscr{T}+\mathscr{R}$ (translation + rotations) representation is the most stable and effective, highlighting geometry-aware modeling as a practical and scalable route to high-fidelity motion generation. In addition, our code has been made publicly available.
+Human motion generation is often learned in Euclidean spaces, although valid motions follow structured non-Euclidean geometry. We present \textbf{Riemannian Motion Generation (RMG)}, a unified framework that represents motion on a product manifold and learns dynamics via Riemannian flow matching. RMG factorizes motion into several manifold factors, yielding a scale-free representation with intrinsic normalization, and uses geodesic interpolation, tangent-space supervision, and manifold-preserving ODE integration for training and sampling. On HumanML3D, RMG achieves state-of-the-art FID in the HumanML3D format (0.043) and ranks first on all reported metrics under the MotionStreamer format. On MotionMillion, it also surpasses strong baselines (FID 6.5, R@1 0.84). Ablations show that the compact $\mathscr{T}+\mathscr{R}$ (translation + rotations) representation is the most stable and effective, highlighting geometry-aware modeling as a practical and scalable route to high-fidelity motion generation. In addition, our code has been made publicly available.
 
 :::
 
@@ -116,15 +116,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
 
 ## Motion Representation Comparison
 
-| Format | $\mathscr{T}$ | $\mathscr{R}_{\mathrm{Orientation}}$ | $\mathscr{R}_{\mathrm{Joint}}$ | $\mathscr{P}$ | $\mathrm{d}\mathscr{T}$ | $\mathrm{d}\mathscr{R}_{\mathrm{Orientation}}$ | $\mathrm{d}\mathscr{R}_{\mathrm{Joint}}$ | $\mathrm{d}\mathscr{P}$ | Foot Contact | Dim. |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| HumanML3D | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | $12J-1$ |
-| MotionStreamer | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | $12J+8$ |
-| DART | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | $12J+12$ |
-| HY-Motion | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | $9J+3$ |
-| **RMG (Ours)** | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | $4J+3$ |
-
-: Comparison of motion representations. $\mathscr{T}$: global translation; $\mathscr{R}_{\mathrm{Orientation}}$: global orientation; $\mathscr{R}_{\mathrm{Joint}}$: per-joint rotation; $\mathscr{P}$: joint position; $\mathrm{d}\cdot$: temporal difference. {#tbl-comparison}
+![](static/images/comparison_highres.png)
 
 :::
 :::
@@ -393,45 +385,11 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
 
 ### Text-based Motion Generation on HumanML3D
 
-```{=html}
-<table id="tbl-h3d" style="width:100%;">
-  <caption>Evaluation of text-based motion generation on HumanML3D dataset.</caption>
-  <thead>
-    <tr>
-      <th rowspan="2" style="text-align:left;">Method</th>
-      <th colspan="4" style="text-align:center;">HumanML3D Format</th>
-      <th colspan="4" style="text-align:center;">MotionStreamer Format</th>
-    </tr>
-    <tr>
-      <th>FID↓</th><th>R@1↑</th><th>Div→</th><th>MModality↑</th>
-      <th>FID↓</th><th>R@1↑</th><th>Div→</th><th>MModality↑</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>GT</td><td>0.002</td><td>0.511</td><td>9.503</td><td>2.799</td><td>0.002</td><td>0.702</td><td>27.492</td><td>--</td></tr>
-    <tr><td>MLD</td><td>0.473</td><td>0.481</td><td>9.724</td><td>2.413</td><td>18.236</td><td>0.546</td><td>26.352</td><td>--</td></tr>
-    <tr><td>T2M-GPT</td><td>0.116</td><td>0.492</td><td>9.761</td><td>1.856</td><td>12.475</td><td>0.606</td><td>27.275</td><td>--</td></tr>
-    <tr><td>MotionGPT</td><td>0.232</td><td>0.492</td><td><strong>9.528</strong></td><td>2.008</td><td>14.375</td><td>0.456</td><td>27.114</td><td>--</td></tr>
-    <tr><td>MoMask</td><td><u>0.045</u></td><td>0.521</td><td>--</td><td>1.241</td><td>12.232</td><td>0.621</td><td>27.127</td><td>--</td></tr>
-    <tr><td>MotionLCM</td><td>0.304</td><td>0.505</td><td>9.607</td><td>2.259</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
-    <tr><td>MotionCLR</td><td>0.269</td><td><strong>0.542</strong></td><td>9.607</td><td>1.985</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
-    <tr><td>MotionLab</td><td>0.167</td><td>--</td><td>9.593</td><td><strong>2.912</strong></td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
-    <tr><td>MotionStreamer</td><td>--</td><td>--</td><td>--</td><td>--</td><td><u>11.790</u></td><td><u>0.631</u></td><td><u>27.284</u></td><td>--</td></tr>
-    <tr><td><strong>Ours</strong></td><td><strong>0.043</strong></td><td><u>0.525</u></td><td><u>9.555</u></td><td><u>2.748</u></td><td><strong>5.835</strong></td><td><strong>0.710</strong></td><td><strong>27.672</strong></td><td><strong>14.906</strong></td></tr>
-  </tbody>
-</table>
-```
+![](static/images/h3d_results_highres.png)
 
 ### Text-based Motion Generation on MotionMillion
 
-| Method | FID↓ | R@1↑ |
-|:---|:---:|:---:|
-| ScaMo | 89.0 | 0.67 |
-| GoToZero-3B | 10.8 | 0.79 |
-| GoToZero-7B | <u>10.3</u> | <u>0.79</u> |
-| **Ours (0.2B+1.7B)** | **8.1** | **0.86** |
-
-: Evaluation of text-based motion generation on MotionMillion dataset. {#tbl-mm}
+![](static/images/mm_results_highres.png)
 
 ## BibTeX {#BibTeX}
 
