@@ -144,7 +144,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_1.mp4" type="video/mp4">
+              <source src="static/videos/A man is performing Tai-chi movement.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -152,7 +152,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_2.mp4" type="video/mp4">
+              <source src="static/videos/A man is running on a treadmill.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -160,7 +160,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_3.mp4" type="video/mp4">
+              <source src="static/videos/A person bows.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -168,7 +168,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_4.mp4" type="video/mp4">
+              <source src="static/videos/A person is doing a salsa dance.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -176,7 +176,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_5.mp4" type="video/mp4">
+              <source src="static/videos/A person is doing jumping jacks.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -184,7 +184,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_6.mp4" type="video/mp4">
+              <source src="static/videos/A person jumps several times.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -192,7 +192,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_7.mp4" type="video/mp4">
+              <source src="static/videos/A person performs a standing back kick.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -200,7 +200,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_8.mp4" type="video/mp4">
+              <source src="static/videos/A person remains still at first, and then jumps and spins around once.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -208,7 +208,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_9.mp4" type="video/mp4">
+              <source src="static/videos/A person slightly bent over with right hand pressing against the air walks forward slowly.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -216,7 +216,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_10.mp4" type="video/mp4">
+              <source src="static/videos/A person squats down and then jumps.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -224,7 +224,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_11.mp4" type="video/mp4">
+              <source src="static/videos/A person walking in a clockwise circle.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -232,7 +232,7 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="./static/videos/motion_12.mp4" type="video/mp4">
+              <source src="static/videos/A person walking in a counter-clockwise circle.mp4" type="video/mp4">
             </video>
           </div>
         </div>
