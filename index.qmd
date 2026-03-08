@@ -152,22 +152,6 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
         <div class="column is-one-third">
           <div class="item">
             <video autoplay controls muted loop playsinline>
-              <source src="static/videos/A person bows.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="item">
-            <video autoplay controls muted loop playsinline>
-              <source src="static/videos/A person is doing a salsa dance.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="item">
-            <video autoplay controls muted loop playsinline>
               <source src="static/videos/A person is doing jumping jacks.mp4" type="video/mp4">
             </video>
           </div>
@@ -241,14 +225,6 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
           <div class="item">
             <video autoplay controls muted loop playsinline>
               <source src="static/videos/The man walked forward, spun right on one foot and walked back to his original position.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="item">
-            <video autoplay controls muted loop playsinline>
-              <source src="static/videos/The person puts something on its side and then brings it back to normal.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -365,6 +341,60 @@ Human motion generation is often learned in Euclidean spaces, although valid mot
             <div class="prompt-video-card">
               <video autoplay controls muted loop playsinline>
                 <source src="static/videos/A man performs a standing back kick/motion_5.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+
+      <h3 class="prompt-row-title">The person does a salsa dance</h3>
+      <div class="prompt-groups-scroller">
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/The person does a salsa dance/motion_1.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/The person does a salsa dance/motion_2.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/The person does a salsa dance/motion_3.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/The person does a salsa dance/motion_4.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="prompt-group-card">
+          <div class="prompt-video-row">
+            <div class="prompt-video-card">
+              <video autoplay controls muted loop playsinline>
+                <source src="static/videos/The person does a salsa dance/motion_5.mp4" type="video/mp4">
               </video>
             </div>
           </div>
