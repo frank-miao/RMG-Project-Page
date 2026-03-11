@@ -133,6 +133,20 @@ body {
   display: inline-block;
 }
 
+.author-email {
+  display: inline-block;
+  margin-left: 0.1rem;
+  color: inherit !important;
+  font-size: 0.8em;
+  line-height: 1;
+  vertical-align: super;
+}
+
+.author-email:hover {
+  color: hsl(204, 86%, 53%) !important;
+  text-decoration: none !important;
+}
+
 .publication-video {
   position: relative;
   width: 100%;

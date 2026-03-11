@@ -27,7 +27,7 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
           <!-- Authors — add/remove <span class="author-block"> as needed -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              Fangran Miao<sup>1</sup>,
+              Fangran Miao<sup>1</sup><sup><a href="mailto:fangran.miao@connect.polyu.hk" class="author-email" aria-label="Email Fangran Miao"><i class="fas fa-envelope"></i></a></sup>,
             </span>
             <span class="author-block">
               Jian Huang<sup>1</sup>,
@@ -57,13 +57,13 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
               </span>
 
               <!-- Code -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/frank-miao/RMG"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><img src="./icon/github.png" style="width:1em;height:1em;object-fit:contain;" alt="GitHub"></span>
                   <span>Code</span>
                 </a>
-              </span>
+              </span> -->
 
               <!-- Hugging Face -->
               <span class="link-block">
@@ -75,17 +75,21 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
               </span>
 
               <!-- Hugging Face Model Weights -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://huggingface.co/collections/Frank-miao/rmg"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><img src="./icon/Hugging Face.png" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
                   <span>Model Weights</span>
                 </a>
-              </span>
+              </span> -->
 
             </div>
           </div>
           <!-- /Publication Links -->
+
+           <h3 class="subtitle is-4 publication-title" style="font-weight: normal; margin-top: 0.5rem;">
+            Code and model weights will be coming soon!
+          </h3>
 
         </div>
       </div>
