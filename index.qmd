@@ -49,7 +49,7 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
 
               <!-- arXiv -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href="https://arxiv.org/abs/2603.15016"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><img src="./icon/arxiv.png" style="width:1em;height:1em;object-fit:contain;" alt="arXiv"></span>
                   <span>arXiv</span>
@@ -429,11 +429,14 @@ Ablations show that the compact $\mathcal{T}+\mathcal{R}$ (translation + rotatio
 ## BibTeX {#BibTeX}
 
 ```bibtex
-@article{rmg,
-  author    = {Fangran MIAO, Jian HUANG, Ting LI},
-  title     = {Riemannian Motion Generation: A Unified Framework for Motion Representation and Generation via Riemannian Flow Matching},
-  journal   = {arxiv},
-  year      = {2026},
+@misc{rmg,
+      title={Riemannian Motion Generation: A Unified Framework for Human Motion Representation and Generation via Riemannian Flow Matching}, 
+      author={Fangran Miao and Jian Huang and Ting Li},
+      year={2026},
+      eprint={2603.15016},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.15016}, 
 }
 ```
 
