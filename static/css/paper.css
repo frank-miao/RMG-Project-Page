@@ -1,0 +1,285 @@
+/* ─── 1. Quarto wrapper neutralization ──────────────────────────────────── */
+/* Quarto injects #quarto-content > #quarto-document-content as wrappers.
+   These must be transparent so Bulma sections span full width. */
+
+#quarto-content,
+#quarto-document-content {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+main.content {
+  margin-top: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Hide Quarto's auto-generated title block (we use Hero section instead) */
+header.quarto-title-block,
+#title-block-header {
+  display: none !important;
+}
+
+/* ─── 2. Box-sizing alignment ────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+/* ─── 3. Quarto code block overrides ─────────────────────────────────────── */
+/* Prevent Quarto syntax highlighting from bleeding into BibTeX pre blocks */
+pre.sourceCode,
+div.sourceCode {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.content pre {
+  background-color: #f5f5f5;
+  padding: 1.25em 1.5em;
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+/* Quarto anchor links — visually subtle */
+/* Section headings (Abstract, etc.) */
+section h2 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+section h3 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.header-anchor {
+  opacity: 0;
+  font-size: 0.8em;
+  margin-left: 0.3em;
+}
+
+.header-anchor:hover {
+  opacity: 0.5;
+}
+
+/* ─── 4. Original nerfies index.css (verbatim) ───────────────────────────── */
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+}
+
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-title {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+  color: #555;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.publication-awards {
+  color: #ff3860;
+  width: fit-content;
+  font-weight: bolder;
+}
+
+.publication-authors a {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+  text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.author-email {
+  display: inline-block;
+  margin-left: 0.1rem;
+  color: inherit !important;
+  font-size: 0.8em;
+  line-height: 1;
+  vertical-align: super;
+}
+
+.author-email:hover {
+  color: hsl(204, 86%, 53%) !important;
+  text-decoration: none !important;
+}
+
+.publication-video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 10px !important;
+}
+
+.publication-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.results-grid {
+  overflow: hidden;
+}
+
+.results-grid .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-grid video {
+  margin: 0;
+  width: 100%;
+}
+
+.same-prompts-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
+}
+
+.prompt-row-title {
+  margin: 1.5rem 0 0.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #334155;
+}
+
+.prompt-groups-scroller {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding: 0.25rem 0 0.75rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+  align-items: flex-start;
+}
+
+.prompt-group-card {
+  flex: 0 0 min(88vw, 352px);
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid #dbe3ec;
+  border-radius: 14px;
+  padding: 0.65rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.prompt-video-row {
+  display: flex;
+  gap: 0.9rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: thin;
+  justify-content: flex-start;
+}
+
+.prompt-video-card {
+  flex: 0 0 100%;
+  overflow: hidden;
+  border: 1px solid #c7d1dc;
+  border-radius: 12px;
+  background: #f9fbfd;
+}
+
+.prompt-video-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .prompt-row-title {
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .prompt-group-card {
+    flex-basis: 90vw;
+    padding: 0.55rem;
+  }
+}
+
+/* ─── 5. Results tables (three-line style) ───────────────────────────────── */
+/* Bulma already gives td a bottom border; we just need top + last-row bottom */
+table {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: auto !important;
+}
+
+table caption {
+  caption-side: bottom;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5em;
+}
+
+table thead tr:first-child th {
+  border-top: 2px solid #363636 !important;
+  border-bottom: none !important;
+}
+
+table thead tr:last-child th {
+  border-bottom: 2px solid #363636 !important;
+}
+
+table tbody tr:last-child td {
+  border-bottom: 2px solid #363636 !important;
+}
+
+table th:first-child,
+table td:first-child {
+  text-align: left !important;
+}
