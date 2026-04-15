@@ -50,8 +50,8 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
               <!-- arXiv -->
               <span class="link-block">
                 <a href="https://arxiv.org/abs/2603.15016"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><img src="./icon/arxiv.png" style="width:1em;height:1em;object-fit:contain;" alt="arXiv"></span>
+                   class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=64" style="width:1em;height:1em;object-fit:contain;" alt="arXiv"></span>
                   <span>arXiv</span>
                 </a>
               </span>
@@ -59,8 +59,8 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
               <!-- Code -->
               <!-- <span class="link-block">
                 <a href="https://github.com/frank-miao/RMG"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><img src="./icon/github.png" style="width:1em;height:1em;object-fit:contain;" alt="GitHub"></span>
+                   class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" style="width:1em;height:1em;object-fit:contain;" alt="GitHub"></span>
                   <span>Code</span>
                 </a>
               </span> -->
@@ -68,8 +68,8 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
               <!-- Hugging Face -->
               <span class="link-block">
                 <a href="https://huggingface.co/spaces/Frank-miao/RMG"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><img src="./icon/Hugging Face.png" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
+                   class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&sz=64" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
                   <span>Demo</span>
                 </a>
               </span>
@@ -77,8 +77,8 @@ keywords: "Riemannian Flow Matching, Human Motion Generation, Motion Representat
               <!-- Hugging Face Model Weights -->
               <!-- <span class="link-block">
                 <a href="https://huggingface.co/collections/Frank-miao/rmg"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><img src="./icon/Hugging Face.png" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
+                   class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&sz=64" style="width:1em;height:1em;object-fit:contain;" alt="Hugging Face"></span>
                   <span>Model Weights</span>
                 </a>
               </span> -->
