@@ -1,0 +1,57 @@
+# Based on the PolyU official brand assets page and brand guideline wording:
+# - PolyU Red is the primary brand color for the logo.
+# - PolyU Grey is the supporting color for the logotype.
+# The public page names the official colors but does not expose web hex codes,
+# so the hex values below are conservative screen approximations that can be
+# replaced later if PolyU provides official digital specifications.
+
+meta:
+  name:
+    short: PolyU
+    full: The Hong Kong Polytechnic University
+  links:
+    home: https://www.polyu.edu.hk/
+    brand: https://www.polyu.edu.hk/cpa/brand-assets/
+
+logo:
+  images:
+    icon: assets/logo.png
+    icon-transparent: assets/logo-trans.png
+    wide: assets/logo-name.png
+  small: icon
+  medium: wide
+  large: wide
+
+color:
+  palette:
+    polyu-red: "#A02337"
+    polyu-grey: "#58595B"
+    black: "#231F20"
+    white: "#FFFFFF"
+    neutral-light: "#F5F5F5"
+
+  foreground: black
+  background: white
+  primary: polyu-red
+  secondary: polyu-grey
+  tertiary: neutral-light
+  success: polyu-grey
+  info: polyu-grey
+  warning: polyu-red
+  danger: polyu-red
+  light: white
+  dark: black
+
+typography:
+  base:
+    family: TeX Gyre Pagella
+    line-height: 1.2
+  headings:
+    family: Computer Modern Sans Serif
+    color: polyu-red
+    weight: bold
+  link:
+    color: polyu-red
+    decoration: underline
+  monospace:
+    family: Courier New

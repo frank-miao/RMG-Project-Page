@@ -1,0 +1,16 @@
+.reveal .slide-logo {
+  top: 12px !important;
+  right: 16px !important;
+  bottom: auto !important;
+  left: auto !important;
+  height: 96px !important;
+  max-height: none !important;
+  width: auto !important;
+  max-width: 420px !important;
+  z-index: 30 !important;
+}
+
+.reveal #title-slide .subtitle,
+.reveal .quarto-title-block .subtitle {
+  color: #A02337 !important;
+}

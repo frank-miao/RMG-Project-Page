@@ -1,0 +1,233 @@
+---
+title: "Riemannian Motion Generation"
+subtitle: "A Unified Framework for Human Motion Representation and Generation via Riemannian Flow Matching"
+author: "Fangran Miao, Jian Huang, Ting Li"
+date: today
+institute:
+  - "Department of Data Science and Artificial Intelligence"
+  - "The Hong Kong Polytechnic University"
+format:
+  polyu-revealjs:
+    slide-number: true
+    footer: "The Hong Kong Polytechnic University"
+    transition: fade
+    center: false
+    controls: true
+    smaller: true
+    preview-links: auto
+    toc: true
+    toc-depth: 2
+filters:
+  - reveal-autoheader
+---
+
+## Motivation
+
+::: columns
+
+::: {.column width="58%"}
+
+::: {.fragment}
+### Why revisit motion representation?
+
+::: {.incremental}
+- Most human motion generators still learn in high-dimensional Euclidean coordinates.
+- Valid articulated motion has strong geometric structure and lower intrinsic dimension.
+- Redundant representations make optimization harder and validity more fragile.
+:::
+
+:::
+
+::: {.fragment}
+### Core question
+
+Can we represent motion on its natural manifold and learn generation directly on that geometry?
+:::
+:::
+
+::: {.column width="42%"}
+![](static/images/teaser_taichi.jpg){fig-alt="Generated motion sample for Tai Chi." width="100%"}
+![](static/images/teaser_run_jump.jpg){fig-alt="Generated motion sample for running and jumping." width="100%"}
+:::
+
+:::
+
+---
+
+### Comparisons
+
+![](static/images/comparison_highres.png){fig-alt="Comparison of RMG with prior methods on motion representation." width="100%"}
+
+## Main Idea
+
+### RMG in one sentence
+
+**Represent motion as a product manifold and learn the generation dynamics with Riemannian flow matching.**
+
+### What this gives us
+
+- Scale-free motion representation with intrinsic normalization
+- Geodesic interpolation instead of straight-line interpolation in ambient space
+- Manifold-preserving ODE integration during sampling
+
+## Methodology
+
+### Factorization
+
+For one motion frame, we use:
+
+- Global translation $\mathcal{T}$: $\mathbb{R}^3$
+- Global orientation + joint rotations $\mathcal{R}$: $\mathbb{S}^3 \times \mathbb{S}^3 \cdots \mathbb{S}^3$
+- Relative local pose $\mathcal{P}$: Kendall pre-shape space
+- (Optional) temporal differences $\mathrm{d}\mathcal{T}$, $\mathrm{d}\mathcal{R}$, $\mathrm{d}\mathcal{P}$
+
+### Key design choice
+
+We unify prior formats under one geometric view, then choose the compact manifold
+
+$$\mathcal{M}_{\mathrm{RMG}} = \mathbb{R}^3 \times (\mathbb{S}^3)^J$$
+
+because translation plus rotations are sufficient and more stable in practice.
+
+---
+
+### Overview
+
+![](static/images/RMG-illustration.png){fig-alt="Unified Riemannian representation and flow matching illustration." width="95%" fig-align="center"}
+
+---
+
+### Training
+
+1. Sample prior motion $x_0$ on the manifold and data motion $x_1$.
+2. Build the interpolation state $x_t = \text{Exp}_{x_0}(t \text{Log}_{x_0}(x_1))$.
+3. Supervise the model with the geodesic tangent velocity.
+4. Project predicted velocity onto the tangent space before computing loss.
+
+### Inference
+
+- Start from the manifold prior
+- Integrate the learned ODE on the manifold
+- Use Riemannian Euler updates to preserve constraints by construction
+
+## Why Geometry Helps
+
+### Representation side
+
+- Unit quaternions avoid redundancy from 6D rotations
+- Natural distance and smooth geodesics on $\mathcal{M}_{\mathrm{RMG}}$
+- No dataset-level mean/std normalization is required
+
+### Dynamics side
+
+- Interpolation follows the manifold geometry
+- Velocity targets live in the correct tangent space
+- Sampling stays on-manifold rather than drifting off it
+
+## Results
+
+### HumanML3D results
+
+![](static/images/h3d_results_highres.png){fig-alt="Quantitative results on HumanML3D dataset." width="95%"}
+
+---
+
+### MotionMillion results
+
+![](static/images/mm_results_highres.png){fig-alt="Quantitative results on MotionMillion dataset." width="100%"}
+
+---
+
+### Visualization results
+
+```{=html}
+<div style="display: flex; gap: 1rem; justify-content: center; align-items: flex-start;">
+  <video autoplay controls muted loop playsinline style="width: 32%; max-width: 420px;">
+    <source src="static/videos/A man is performing Tai-chi movement.mp4" type="video/mp4">
+  </video>
+
+  <video autoplay controls muted loop playsinline style="width: 32%; max-width: 420px;">
+    <source src="static/videos/A man is running on a treadmill.mp4" type="video/mp4">
+  </video>
+
+  <video autoplay controls muted loop playsinline style="width: 32%; max-width: 420px;">
+    <source src="static/videos/A person climbs a ladder.mp4" type="video/mp4">
+  </video>
+</div>
+```
+
+---
+
+### Visualization results
+
+**Prompt**: A person stands on one legs in yoga pose.
+```{=html}
+<div style="max-width: 100%;">
+  <div style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem;">
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A person stands on one legs in yoga pose/motion_1.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A person stands on one legs in yoga pose/motion_2.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A person stands on one legs in yoga pose/motion_3.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A person stands on one legs in yoga pose/motion_4.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A person stands on one legs in yoga pose/motion_5.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+```
+
+
+## Ablation
+
+### Which factors matter?
+
+![](static/images/rmg_ablation_study_1.png){fig-alt="Ablation study comparing motion factor representations." width="78%" fig-align="center"}
+
+### Conclusion
+
+- $\mathcal{T} + \mathcal{R}$ is consistently the best and most guidance-stable representation.
+- Adding pose coordinates $\mathcal{P}$ does not improve robustness.
+- Rotation information is the critical ingredient for quality and stability.
+
+---
+
+### Does temporal differencing help?
+
+![](static/images/rmg_ablation_study_2.png){fig-alt="Ablation study on temporal difference modeling." width="78%" fig-align="center"}
+
+### Conclusion
+
+- Absolute modeling with $\mathcal{T} + \mathcal{R}$ performs best across the full guidance range.
+- Temporal differencing weakens long-horizon structure and hurts stability.
+
+## Final Takeaways
+
+### RMG
+
+- Models human motion in its natural non-Euclidean geometry
+- Combines compact representation with Riemannian flow matching
+- Delivers state-of-the-art or best-reported results on HumanML3D
+- Scales effectively to MotionMillion
+
+### Practical message
+
+**Geometry-aware motion modeling is not only principled, but also effective and scalable.**
+
+## Thank You
+
+### Project page
+
+<https://frank-miao.github.io/RMG-Project-Page>
+
+### Contact
+
+`fangran.miao@connect.polyu.hk`  
+`j.huang@polyu.edu.hk`  
+`liting@sustech.edu.cn`
