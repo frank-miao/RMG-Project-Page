@@ -78,22 +78,82 @@ For one motion frame, we use:
 
 - Global translation $\mathcal{T}$: $\mathbb{R}^3$
 - Global orientation + joint rotations $\mathcal{R}$: $\mathbb{S}^3 \times \mathbb{S}^3 \cdots \mathbb{S}^3$
-- Relative local pose $\mathcal{P}$: Kendall pre-shape space
-- (Optional) temporal differences $\mathrm{d}\mathcal{T}$, $\mathrm{d}\mathcal{R}$, $\mathrm{d}\mathcal{P}$
+- Relative local pose $\mathcal{P}$: $\mathcal{S}^J_3$ -- Kendall pre-shape space
+- Temporal differences: $\mathrm{d}\mathcal{T}$, $\mathrm{d}\mathcal{R}$, $\mathrm{d}\mathcal{P}$
 
 ### Key design choice
 
-We unify prior formats under one geometric view, then choose the compact manifold
+We unify prior formats under one geometric view, then choose the compact manifold (translation + rotations) for the main RMG model:
 
-$$\mathcal{M}_{\mathrm{RMG}} = \mathbb{R}^3 \times (\mathbb{S}^3)^J$$
-
-because translation plus rotations are sufficient and more stable in practice.
+$$\mathcal{M}_{\mathrm{RMG}} = \mathcal{M}_{\mathcal{T}}\times \mathcal{M}_{\mathcal{R}} = \mathbb{R}^3 \times (\mathbb{S}^3)^J$$
 
 ---
 
 ### Overview
 
 ![](static/images/RMG-illustration.png){fig-alt="Unified Riemannian representation and flow matching illustration." width="95%" fig-align="center"}
+
+---
+
+### Prior distribution
+
+#### Which manifold prior?
+
+:::::: columns
+
+::: {.column width="20%"}
+::: {.fragment fragment-index=1}
+![](static/images/uniform_sphere_demo.png){fig-alt="Comparison of different manifold priors." width="100%"}
+:::
+:::
+
+::: {.column width="20%"}
+::: {.fragment fragment-index=2}
+![](static/images/vmf_sphere_demo_1.png){fig-alt="Comparison of different manifold priors." width="100%"}
+:::
+:::
+
+::: {.column width="20%"}
+::: {.fragment}
+![](static/images/vmf_sphere_demo_2.png){fig-alt="Comparison of different manifold priors." width="100%"}
+:::
+:::
+
+::: {.column width="20%"}
+::: {.fragment}
+![](static/images/vmf_sphere_demo_3.png){fig-alt="Comparison of different manifold priors." width="100%"}
+:::
+:::
+
+::: {.column width="20%"}
+::: {.fragment}
+![](static/images/vmf_sphere_demo_4.png){fig-alt="Comparison of different manifold priors." width="100%"}
+:::
+:::
+
+::::::
+
+
+::: {.fragment fragment-index=1}
+
+$$\mathrm{Uniform\ distribution}: X\sim \mathrm{Uniform}(\mathbb{S}^3)$$
+
+:::
+
+::: {.fragment fragment-index=2}
+
+$$\mathrm{Riemannian\ Gaussian\ distribution}: X\sim \mathcal{RN}(\mu, \Sigma)$$
+
+:::
+
+
+
+---
+
+### The choic of mean vector
+
+![](static/images/reference-mean-illustration.png){fig-alt="Illustration of different mean vector choices for the von Mises-Fisher distribution." width="80%" fig-align="center"}
+
 
 ---
 
@@ -141,24 +201,42 @@ because translation plus rotations are sufficient and more stable in practice.
 ### Visualization results
 
 ```{=html}
-<div style="display: flex; gap: 1rem; justify-content: center; align-items: flex-start;">
-  <video autoplay controls muted loop playsinline style="width: 32%; max-width: 420px;">
-    <source src="static/videos/A man is performing Tai-chi movement.mp4" type="video/mp4">
-  </video>
+<div style="max-height: 40vh; overflow-y: auto; overflow-x: hidden; padding-right: 0.5rem;">
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: start;">
+    <video autoplay controls muted loop playsinline style="width: 100%;">
+      <source src="static/videos/A man is performing Tai-chi movement.mp4" type="video/mp4">
+    </video>
 
-  <video autoplay controls muted loop playsinline style="width: 32%; max-width: 420px;">
-    <source src="static/videos/A man is running on a treadmill.mp4" type="video/mp4">
-  </video>
+    <video autoplay controls muted loop playsinline style="width: 100%;">
+      <source src="static/videos/A man is running on a treadmill.mp4" type="video/mp4">
+    </video>
 
-  <video autoplay controls muted loop playsinline style="width: 32%; max-width: 420px;">
-    <source src="static/videos/A person climbs a ladder.mp4" type="video/mp4">
-  </video>
+    <video autoplay controls muted loop playsinline style="width: 100%;">
+      <source src="static/videos/A person climbs a ladder.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay controls muted loop playsinline style="width: 100%;">
+      <source src="static/videos/A person is doing jumping jacks.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay controls muted loop playsinline style="width: 100%;">
+      <source src="static/videos/A person jumps several times.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay controls muted loop playsinline style="width: 100%;">
+      <source src="static/videos/A person squats down and then jumps.mp4" type="video/mp4">
+    </video>
+  </div>
 </div>
 ```
 
 ---
 
 ### Visualization results
+
+::: {.panel-tabset}
+
+#### Prompt A
 
 **Prompt**: A person stands on one legs in yoga pose.
 ```{=html}
@@ -182,6 +260,33 @@ because translation plus rotations are sufficient and more stable in practice.
   </div>
 </div>
 ```
+
+#### Prompt B
+
+**Prompt**: A man performs a standing back kick.
+```{=html}
+<div style="max-width: 100%;">
+  <div style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem;">
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A man performs a standing back kick/motion_1.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A man performs a standing back kick/motion_2.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A man performs a standing back kick/motion_3.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A man performs a standing back kick/motion_4.mp4" type="video/mp4">
+    </video>
+    <video autoplay controls muted loop playsinline style="flex: 0 0 320px; width: 320px;">
+      <source src="static/videos/A man performs a standing back kick/motion_5.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+```
+
+:::
 
 
 ## Ablation
@@ -228,6 +333,4 @@ because translation plus rotations are sufficient and more stable in practice.
 
 ### Contact
 
-`fangran.miao@connect.polyu.hk`  
-`j.huang@polyu.edu.hk`  
-`liting@sustech.edu.cn`
+<mailto:fangran.miao@connect.polyu.hk>
