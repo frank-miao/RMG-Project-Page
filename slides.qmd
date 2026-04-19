@@ -6,6 +6,7 @@ date: today
 institute:
   - "Department of Data Science and Artificial Intelligence"
   - "The Hong Kong Polytechnic University"
+  - "Speaker: Fangran Miao"
 format:
   polyu-revealjs:
     slide-number: true
@@ -23,7 +24,7 @@ filters:
 
 ## Motivation
 
-::: columns
+:::: columns
 
 ::: {.column width="58%"}
 
@@ -37,12 +38,6 @@ filters:
 :::
 
 :::
-
-::: {.fragment}
-### Core question
-
-Can we represent motion on its natural manifold and learn generation directly on that geometry?
-:::
 :::
 
 ::: {.column width="42%"}
@@ -50,13 +45,13 @@ Can we represent motion on its natural manifold and learn generation directly on
 ![](static/images/teaser_run_jump.jpg){fig-alt="Generated motion sample for running and jumping." width="100%"}
 :::
 
+::::
+
+::: {.fragment}
+### Core question
+
+Can we represent motion by using it natural geometry?
 :::
-
----
-
-### Comparisons
-
-![](static/images/comparison_highres.png){fig-alt="Comparison of RMG with prior methods on motion representation." width="100%"}
 
 ## Main Idea
 
@@ -89,9 +84,9 @@ $$\mathcal{M}_{\mathrm{RMG}} = \mathcal{M}_{\mathcal{T}}\times \mathcal{M}_{\mat
 
 ---
 
-### Overview
+### Comparisons
 
-![](static/images/RMG-illustration.png){fig-alt="Unified Riemannian representation and flow matching illustration." width="95%" fig-align="center"}
+![](static/images/comparison_highres.png){fig-alt="Comparison of RMG with prior methods on motion representation." width="100%"}
 
 ---
 
@@ -114,19 +109,19 @@ $$\mathcal{M}_{\mathrm{RMG}} = \mathcal{M}_{\mathcal{T}}\times \mathcal{M}_{\mat
 :::
 
 ::: {.column width="20%"}
-::: {.fragment}
+::: {.fragment fragment-index=2}
 ![](static/images/vmf_sphere_demo_2.png){fig-alt="Comparison of different manifold priors." width="100%"}
 :::
 :::
 
 ::: {.column width="20%"}
-::: {.fragment}
+::: {.fragment fragment-index=3}
 ![](static/images/vmf_sphere_demo_3.png){fig-alt="Comparison of different manifold priors." width="100%"}
 :::
 :::
 
 ::: {.column width="20%"}
-::: {.fragment}
+::: {.fragment fragment-index=3}
 ![](static/images/vmf_sphere_demo_4.png){fig-alt="Comparison of different manifold priors." width="100%"}
 :::
 :::
@@ -146,11 +141,17 @@ $$\mathrm{Riemannian\ Gaussian\ distribution}: X\sim \mathcal{RN}(\mu, \Sigma)$$
 
 :::
 
+::: {.fragment fragment-index=3}
+
+$$\mathrm{von\ Mises–Fisher\ distribution}: X\sim \mathrm{vMF}(\mu, \kappa)$$
+
+:::
+
 
 
 ---
 
-### The choic of mean vector
+### The choice of mean vector
 
 ![](static/images/reference-mean-illustration.png){fig-alt="Illustration of different mean vector choices for the von Mises-Fisher distribution." width="80%" fig-align="center"}
 
@@ -170,7 +171,13 @@ $$\mathrm{Riemannian\ Gaussian\ distribution}: X\sim \mathcal{RN}(\mu, \Sigma)$$
 - Integrate the learned ODE on the manifold
 - Use Riemannian Euler updates to preserve constraints by construction
 
-## Why Geometry Helps
+---
+
+### Overview
+
+![](static/images/RMG-illustration.png){fig-alt="Unified Riemannian representation and flow matching illustration." width="95%" fig-align="center"}
+
+## Discussion: Why Geometry Helps
 
 ### Representation side
 
@@ -195,6 +202,86 @@ $$\mathrm{Riemannian\ Gaussian\ distribution}: X\sim \mathcal{RN}(\mu, \Sigma)$$
 ### MotionMillion results
 
 ![](static/images/mm_results_highres.png){fig-alt="Quantitative results on MotionMillion dataset." width="100%"}
+
+---
+
+### Conversion functions
+```{mermaid}
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'background': '#ffffff',
+    'primaryColor': '#f7d9df',
+    'primaryTextColor': '#231F20',
+    'primaryBorderColor': '#A02337',
+    'secondaryColor': '#fdecef',
+    'secondaryTextColor': '#231F20',
+    'secondaryBorderColor': '#c95b6c',
+    'tertiaryColor': '#f9f4f5',
+    'tertiaryTextColor': '#231F20',
+    'tertiaryBorderColor': '#d7a8b1',
+    'lineColor': '#58595B',
+    'textColor': '#231F20',
+    'fontFamily': 'TeX Gyre Pagella'
+  }
+}}%%
+flowchart LR
+
+%% =========================
+%% Layer 1: Source
+%% =========================
+subgraph S["Source Representation"]
+direction TB
+    A["SMPL Parameterization"]
+end
+
+%% =========================
+%% Layer 2: Factorization
+%% =========================
+subgraph I["Factorized Motion Components"]
+direction TB
+    B["Joint-based<br/> Representation<br/> (T, P)"]
+    D["Rotation-based<br/> Representation<br/> (T, R)"]
+end
+
+%% =========================
+%% Layer 3: Motion Formats
+%% =========================
+subgraph T["Motion Representations"]
+direction TB
+    C["HumanML3D<br/>L × (12J − 1)"]
+    E["MotionStreamer<br/>L × (12J + 8)"]
+    F["RMG (Ours)<br/>L × (4J + 3)"]
+end
+
+%% ===== Factorization =====
+A --> B
+A --> D
+
+%% ===== Forward Mappings =====
+B --> C
+B --> E
+D --> E
+D <--> F
+
+%% ===== Cross-space Relations =====
+D -.->|"Forward Kinematics"| B
+B -.->|"Inverse Kinematics"| D
+
+%% ===== Explicit light styling =====
+style S fill:#f7f3f4,stroke:#b97a84,stroke-width:2px,color:#231F20
+style I fill:#f7f3f4,stroke:#b97a84,stroke-width:2px,color:#231F20
+style T fill:#f7f3f4,stroke:#b97a84,stroke-width:2px,color:#231F20
+
+style A fill:#fdecef,stroke:#A02337,stroke-width:2px,color:#231F20
+style B fill:#fff6f7,stroke:#c95b6c,stroke-width:2px,color:#231F20
+style C fill:#fff6f7,stroke:#c95b6c,stroke-width:2px,color:#231F20
+style D fill:#fff6f7,stroke:#c95b6c,stroke-width:2px,color:#231F20
+style E fill:#fff6f7,stroke:#c95b6c,stroke-width:2px,color:#231F20
+style F fill:#f9e2e6,stroke:#A02337,stroke-width:2.5px,color:#231F20
+
+linkStyle default stroke:#58595B,stroke-width:2px,color:#231F20
+```
 
 ---
 
@@ -325,7 +412,19 @@ $$\mathrm{Riemannian\ Gaussian\ distribution}: X\sim \mathcal{RN}(\mu, \Sigma)$$
 
 **Geometry-aware motion modeling is not only principled, but also effective and scalable.**
 
-## Thank You
+## Acknowledgements
+
+We would like to thank the following libraries and repositories for their contributions to our project:
+
+- [Geomstats](https://geomstats.github.io/) which provides the foundation for Riemannian manifolds
+- [DiT](https://github.com/facebookresearch/DiT) which provides the foundation of our model architecture
+- [HumanML3D](https://github.com/EricGuo5513/HumanML3D) and [MotionMillion](https://huggingface.co/datasets/InternRobotics/MotionMillion) which provide large-scale human motion datasets
+- [MDM](https://github.com/GuyTevet/motion-diffusion-model), [MLD](https://github.com/ChenFengYe/motion-latent-diffusion), and [MotionStreamer](https://github.com/zju3dv/MotionStreamer) which provide substantial codebases. Some code in this repository is adapted from these projects.
+- [Qwen3](https://github.com/QwenLM/Qwen3) and [Qwen3-Embedding](https://github.com/QwenLM/Qwen3-Embedding) for their amazing pretrained models, which we use as the text encoder in our model.
+- [HY-Motion-1.0](https://github.com/Tencent-Hunyuan/HY-Motion-1.0), which provides real-time visualization
+- [Hugging Face](https://huggingface.co/) which provides an amazing platform for model deployment, evaluation, and sharing.
+
+---
 
 ### Project page
 
