@@ -165,11 +165,17 @@ $$\mathrm{von\ Mises–Fisher\ distribution}: X\sim \mathrm{vMF}(\mu, \kappa)$$
 3. Supervise the model with the geodesic tangent velocity.
 4. Project predicted velocity onto the tangent space before computing loss.
 
+![](static/images/training_highres.png){fig-alt="Illustration of the training process for RMG." width="95%" fig-align="center"}
+
+---
+
 ### Inference
 
 - Start from the manifold prior
 - Integrate the learned ODE on the manifold
 - Use Riemannian Euler updates to preserve constraints by construction
+
+![](static/images/inference_highres.png){fig-alt="Illustration of the inference process for RMG." width="95%" fig-align="center"}
 
 ---
 
