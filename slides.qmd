@@ -50,7 +50,7 @@ filters:
 ::: {.fragment}
 ### Core question
 
-Can we represent motion by using it natural geometry?
+If data already resides on a lower-dimensional manifold and follows a strong geometric structure, can we utilize it?
 :::
 
 ## Main Idea
@@ -176,6 +176,53 @@ $$\mathrm{von\ Mises–Fisher\ distribution}: X\sim \mathrm{vMF}(\mu, \kappa)$$
 - Use Riemannian Euler updates to preserve constraints by construction
 
 ![](static/images/inference_highres.png){fig-alt="Illustration of the inference process for RMG." width="95%" fig-align="center"}
+
+---
+
+### Visual Illustration
+
+
+```{=html}
+<div id="geodesic-demo" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; margin-top: 0.75rem;">
+  <div style="overflow: hidden; width: 100%; aspect-ratio: 4 / 3;">
+    <img class="geodesic-gif" data-src="static/images/euclidean_geodesic.gif" src="static/images/euclidean_geodesic.gif" alt="Euclidean geodesic demo" style="width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block;">
+  </div>
+  <div style="overflow: hidden; width: 100%; aspect-ratio: 4 / 3;">
+    <img class="geodesic-gif" data-src="static/images/sphere_geodesic.gif" src="static/images/sphere_geodesic.gif" alt="Sphere geodesic demo" style="width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block;">
+  </div>
+</div>
+<script>
+(() => {
+  const restart = () => {
+    const wrapper = document.getElementById('geodesic-demo');
+    if (!wrapper) return;
+    const stamp = String(Date.now());
+    wrapper.querySelectorAll('img.geodesic-gif').forEach((img) => {
+      const src = img.dataset.src;
+      if (!src) return;
+      img.src = `${src}?v=${stamp}`;
+    });
+  };
+
+  const onReady = () => {
+    if (document.getElementById('geodesic-demo')) {
+      restart();
+    }
+  };
+
+  if (window.Reveal) {
+    window.Reveal.on('ready', onReady);
+    window.Reveal.on('slidechanged', (event) => {
+      if (event.currentSlide && event.currentSlide.querySelector('#geodesic-demo')) {
+        restart();
+      }
+    });
+  } else {
+    window.addEventListener('load', onReady);
+  }
+})();
+</script>
+```
 
 ---
 
